@@ -1,6 +1,6 @@
-import { IImageGallery } from "./types";
+import { TImageGallery } from "./types";
 
-export const initialImageData: IImageGallery[] = [
+export const initialImageData: TImageGallery[] = [
     {
         id: "1",
         slug: "/assets/images/image-1.jpg",
