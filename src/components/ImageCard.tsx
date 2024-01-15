@@ -3,7 +3,11 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { TImageGallery } from "../types";
 
-const ImageCard = ({ id, slug, isSelected }: TImageGallery) => {
+interface TImageCard extends TImageGallery {
+  handleImageSelect: (id: string) => void;
+}
+
+const ImageCard = ({ id, slug, isSelected, handleImageSelect }: TImageCard) => {
   const {
     transform,
     transition,
@@ -27,10 +31,16 @@ const ImageCard = ({ id, slug, isSelected }: TImageGallery) => {
         { "z-10": isDragging }
       )}
     >
-      <button className="absolute top-2 left-2 z-10 scale-0 group-hover:scale-100 transition-all">
+      <button
+        onClick={() => handleImageSelect(id)}
+        className={cn(
+          "absolute top-2 left-2 z-10 scale-0 group-hover:scale-100 transition-all",
+          { "scale-100": isSelected }
+        )}
+      >
         {isSelected ? (
           <svg
-            className="w-6 h-6 text-blue-600 bg--500"
+            className="w-8 h-8 text-blue-600 rounded-md"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -42,7 +52,7 @@ const ImageCard = ({ id, slug, isSelected }: TImageGallery) => {
           </svg>
         ) : (
           <svg
-            className="w-6 h-6"
+            className="w-8 h-8 rounded-md"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             fill="white"
@@ -58,7 +68,12 @@ const ImageCard = ({ id, slug, isSelected }: TImageGallery) => {
         {...listeners}
         {...attributes}
         role="button"
-        className="absolute inset-0 bg-black/20 rounded-md scale-0 group-hover:scale-100 transition-all"
+        className={cn(
+          "absolute inset-0 bg-black/20 rounded-md scale-0 group-hover:scale-100 transition-all",
+          {
+            "opacity-0": isSelected,
+          }
+        )}
       ></button>
       <img
         className={cn("w-full h-full object-cover rounded-md")}

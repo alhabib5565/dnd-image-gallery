@@ -23,6 +23,21 @@ import ImageCard from "./components/ImageCard";
 const App = () => {
   const [galleryImages, setGalleryImages] = useState(initialImageData);
 
+  const handleImageSelect = (id: string) => {
+    const allImages = [...galleryImages];
+    const targetdImage = allImages.find((image) => image.id === id);
+
+    if (targetdImage) {
+      targetdImage.isSelected = !targetdImage?.isSelected;
+    }
+    setGalleryImages(allImages);
+  };
+
+  const handleImageDelete = () => {
+    const remainingImages = galleryImages.filter((image) => !image.isSelected);
+    setGalleryImages(remainingImages);
+  };
+
   const mouseSensor = useSensor(MouseSensor);
   const pointerSensor = useSensor(PointerSensor);
   const touchSensor = useSensor(TouchSensor);
@@ -38,6 +53,7 @@ const App = () => {
   const handleDragStart = (e: DragStartEvent) => {
     console.log("from handle Start ", e);
   };
+
   const handleDragEnd = (e: DragEndEvent) => {
     console.log("from handle end ", e);
     const { active, over } = e;
@@ -56,16 +72,25 @@ const App = () => {
   return (
     <div className={cn("min-h-screen h-full flex justify-center items-center")}>
       <div className={cn("bg-white rounded-lg p-4 md:p-8 max-w-6xl w-full")}>
-        <Header />
+        <Header
+          handleImageDelete={handleImageDelete}
+          galleryImages={galleryImages}
+        />
         <DndContext
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
           sensors={sensors}
         >
           <SortableContext items={galleryImages} strategy={rectSortingStrategy}>
-            <div className={cn("grid grid-cols-2 md:grid-cols-5 gap-8 ")}>
+            <div
+              className={cn("grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6 ")}
+            >
               {galleryImages.map((image) => (
-                <ImageCard {...image} key={image.id} />
+                <ImageCard
+                  handleImageSelect={handleImageSelect}
+                  {...image}
+                  key={image.id}
+                />
               ))}
             </div>
           </SortableContext>
