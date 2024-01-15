@@ -19,6 +19,7 @@ import { useState } from "react";
 import { initialImageData } from "./data";
 import cn from "./utils/cn";
 import ImageCard from "./components/ImageCard";
+import AddImage from "./components/AddImage";
 
 const App = () => {
   const [galleryImages, setGalleryImages] = useState(initialImageData);
@@ -92,6 +93,7 @@ const App = () => {
                   key={image.id}
                 />
               ))}
+              <AddImage />
             </div>
           </SortableContext>
         </DndContext>
