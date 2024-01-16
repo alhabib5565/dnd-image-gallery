@@ -23,7 +23,6 @@ import AddImage from "./components/AddImage";
 
 const App = () => {
   const [galleryImages, setGalleryImages] = useState(initialImageData);
-
   const handleImageSelect = (id: string) => {
     const allImages = [...galleryImages];
     const targetdImage = allImages.find((image) => image.id === id);
@@ -93,7 +92,7 @@ const App = () => {
                   key={image.id}
                 />
               ))}
-              <AddImage />
+              <AddImage setGalleryImages={setGalleryImages} />
             </div>
           </SortableContext>
         </DndContext>

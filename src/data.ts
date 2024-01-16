@@ -3,7 +3,7 @@ import { TImageGallery } from "./types";
 export const initialImageData: TImageGallery[] = [
     {
         id: "1",
-        slug: "/assets/images/image-1.jpg",
+        slug: "/assets/images/habib.jpg",
         isSelected: false,
     },
     {
