@@ -1,30 +1,18 @@
-# Drag And Drop Image Gallery
+# Drag and Drop Image Gallery Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ <img alt="" src="https://i.ibb.co/py8R8Dw/dnd-image-gallery-github-cover.png">
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+This project is a drag-and-drop image gallery implemented using React.js with Typescript. It utilizes the `@dnd-kit` library for drag-and-drop functionality, and Tailwind CSS for styling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+- React.js
+- Typescript
+- Tailwind CSS
+- @dnd-kit/core and @dnd-kit/sortable for drag-and-drop
+- tailwind-merge for handling Tailwind CSS merge issues
+- clsx for conditionally setting class names
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
